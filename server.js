@@ -37,15 +37,15 @@ app.listen(PORT, () => {
 function createNewNote(body, notes) {
   const newNote = body
   console.log(body)
-  if (notes.length === 0) notes.push({ ...body, id: 0 })
+  if (notes.length === 0) notes.push({ ...body, id: 1 })
   else {
-    if (!notes[0].id) notes[0].id = 0
+    if (!notes[0].id) notes[0].id = 1
     body.id = notes[notes.length - 1].id + 1
     notes.push(body)
   }
   fs.writeFileSync(
     path.join(__dirname, "./db/db.json"),
-    JSON.stringify(notes, null, 2)
+    JSON.stringify(notes, null, 1)
   )
   return newNote
 }
@@ -64,7 +64,7 @@ function deleteNote(id, notes) {
             notes.splice(i, 1);
             fs.writeFileSync(
                 path.join(__dirname, './db/db.json'),
-                JSON.stringify(notes, null, 2)
+                JSON.stringify(notes, null, 1)
             );
 
             break;

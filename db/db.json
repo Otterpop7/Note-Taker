@@ -1,17 +1,17 @@
 [
-  {
-    "title": "test",
-    "text": "test",
-    "id": 0
-  },
-  {
-    "title": "stuff",
-    "text": "things",
-    "id": 1
-  },
-  {
-    "title": "more things",
-    "text": "more stuff",
-    "id": 2
-  }
+ {
+  "title": "testing",
+  "text": "testing bug",
+  "id": 1
+ },
+ {
+  "title": "id changed",
+  "text": "changed id to fix display bug",
+  "id": 2
+ },
+ {
+  "title": "Now it works!",
+  "text": "fixed",
+  "id": 3
+ }
 ]
