@@ -11,13 +11,21 @@ app.use(express.json())
 app.use(express.static("public"))
 
 app.get("/notes", (req, res) => {
-    res.sendFile(path.join(__dirname, "/public/notes.html"))
+  res.sendFile(path.join(__dirname, "/public/notes.html"))
 })
 
-app.post('/api/notes', (req, res) => {
-    const newNote = createNewNote(req.body, allNotes);
-    res.json(newNote);
-});
+app.post("/api/notes", (req, res) => {
+  const newNote = createNewNote(req.body, dbJson)
+  res.json(newNote)
+})
+
+app.get("/api/notes", (req, res) => {
+  fs.readFile(__dirname + "/db/db.json", (err, data) => {
+    if (err) throw err
+    let notes = JSON.parse(data)
+    return res.json(notes)
+  })
+})
 
 app.listen(PORT, () => {
   console.log("Application is listening on PORT " + PORT)
