@@ -51,23 +51,21 @@ function createNewNote(body, notes) {
 }
 
 // deletes note from dbjson
-app.delete('/api/notes/:id', (req, res) => {
-    deleteNote(req.params.id, dbJson);
-    res.json(true);
-});
+app.delete("/api/notes/:id", (req, res) => {
+  deleteNote(req.params.id, dbJson)
+  res.json(true)
+})
 
 function deleteNote(id, notes) {
-    for (let i = 0; i < notes.length; i++) {
-        let note = notes[i];
-
-        if (note.id == id) {
-            notes.splice(i, 1);
-            fs.writeFileSync(
-                path.join(__dirname, './db/db.json'),
-                JSON.stringify(notes, null, 1)
-            );
-
-            break;
-        }
+  for (let i = 0; i < notes.length; i++) {
+    let note = notes[i]
+    if (note.id == id) {
+      notes.splice(i, 1)
+      fs.writeFileSync(
+        path.join(__dirname, "./db/db.json"),
+        JSON.stringify(notes, null, 1)
+      )
+      break
     }
+  }
 }
