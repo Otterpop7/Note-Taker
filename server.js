@@ -30,3 +30,19 @@ app.get("/api/notes", (req, res) => {
 app.listen(PORT, () => {
   console.log("Application is listening on PORT " + PORT)
 })
+
+function createNewNote(body, notes) {
+  const newNote = body
+  console.log(body);
+  if (notes.length === 0) notes.push({...body,id:0})
+  else {
+    if(!notes[0].id) notes[0].id = 0;
+    body.id = notes[notes.length - 1].id + 1;
+    notes.push(body)
+  }
+  fs.writeFileSync(
+    path.join(__dirname, "./db/db.json"),
+    JSON.stringify(notes, null, 2)
+  )
+  return newNote
+}
